@@ -9,7 +9,7 @@ public class MainController {
   
   @FXML Label timeRemainingLabel;
   @FXML Label scoreLabel;
-
+  
   @FXML ImageView imageView0;
   @FXML ImageView imageView1;
   @FXML ImageView imageView2;
@@ -23,7 +23,7 @@ public class MainController {
   @FXML Pane pane4;
 
   private WhackAMole game;
-
+  private MainView view;
   public void initialize() {
     Pane[] panes = { pane0, pane1, pane2, pane3, pane4}
       for ( Pane p : panes ){
@@ -39,17 +39,17 @@ public class MainController {
         for (int i = 0; i < imgs.length; i++) {
             imgs[i].setUserData(i);   // Store the index so you know which mole was clicked
         }
-    MainView view = new MainView(panes, imgs)
+    view = new MainView(timeRemainingLabel, scoreLabel, imgs);
   }
   
   @FXML
-  public void imageViewAction() {
-    throw new RuntimeException("Not Implemented");
+  public void imageViewAction(Event e) {
+    game.whackMole((Int) ( (ImageView) e.getSource()).getUserData());
   }
   
   @FXML
   public void startButtonAction() {
-    throw new RuntimeException("Not Implemented");
+    game.startGame();
   }
   
 }
